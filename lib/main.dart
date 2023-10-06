@@ -31,6 +31,8 @@ class _DemoScreenState extends State<DemoScreen> {
         appBar: AppBar(title: Text("Demo Screen"), actions: [Icon(Icons.add)]),
         body: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
@@ -60,33 +62,57 @@ class _DemoScreenState extends State<DemoScreen> {
                 ],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      color: Colors.red,
-                    ),
+                  Container(
+                    height: 100,
+                    width: 100,
+                    color: Colors.red,
                   ),
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      color: Colors.green,
-                    ),
+                  Container(
+                    height: 100,
+                    width: 100,
+                    color: Colors.green,
                   ),
-                  Expanded(
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      color: Colors.yellow,
-                    ),
+                  Container(
+                    height: 100,
+                    width: 100,
+                    color: Colors.yellow,
                   ),
                 ],
               ),
+              Container(
+                height: 200,
+                width: MediaQuery.of(context).size.width,
+                child: Stack(
+                  children: [
+                    Container(
+                      height: 100,
+                      width: MediaQuery.of(context).size.width,
+                      color: Colors.red,
+                    ),
+                    Positioned(
+                      top: 50,
+                      height: 100,
+                      right: 50,
+                      left: 50,
+                      child: Card(
+                        child: ListTile(title: Text("stack overview")),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: CircleAvatar(
+                      backgroundImage: AssetImage("assets/images/sale.png"),),
+                  title: Text("Softwarica college of IT & Ecommerce"),
+                  subtitle: Text("Hello, sec B"),
+                  trailing: Icon(Icons.check_circle),
 
+                ),
+              ),
               Container(
                 height: 100,
                 width: 200,
