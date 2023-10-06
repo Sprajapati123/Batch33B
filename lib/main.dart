@@ -32,22 +32,61 @@ class _DemoScreenState extends State<DemoScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-
               Row(
                 children: [
-                  Container(
-                    height: 100,
-                    width: 100,
-                    color: Colors.red,
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.red,
+                    ),
                   ),
-
-                  Container(
-                    height: 100,
-                    width: 100,
-                    color: Colors.yellow,
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.green,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.yellow,
+                    ),
                   ),
                 ],
               ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.red,
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.green,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.yellow,
+                    ),
+                  ),
+                ],
+              ),
+
               Container(
                 height: 100,
                 width: 200,
