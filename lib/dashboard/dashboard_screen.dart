@@ -37,39 +37,57 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               Expanded(
                 flex: 5,
                 child: Container(
-                  color: Colors.yellow,
                   height: 150,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  child: Column(
                     children: [
-                      Column(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text("31"),
+                          Column(
+                            children: [
+                              Text("31"),
 
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5.0),
-                            child: Text("Posts"),
-                          )
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5.0),
+                                child: Text("Posts"),
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text("15.k"),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5.0),
+                                child: Text("Followers"),
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text("10k"),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Text("Following"),
+                              )
+                            ],
+                          ),
                         ],
                       ),
-                      Column(
-                        children: [
-                          Text("15.k"),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5.0),
-                            child: Text("Followers"),
-                          )
+                      Row(
+                        children: const [
+                          Expanded(
+                              flex: 3,
+                              child: OutlinedButton(onPressed: null, child: Text("Message"))),
+                          SizedBox(width: 10,),
+                          Expanded(
+                              flex: 1,
+                              child: OutlinedButton(onPressed: null, child: Icon(Icons.person_add_alt_outlined))),
+                          SizedBox(width: 10,),
+                          Expanded(
+                              flex: 1,
+                              child: OutlinedButton(onPressed: null, child: Icon(Icons.arrow_drop_down))),
                         ],
-                      ),
-                      Column(
-                        children: [
-                          Text("10k"),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Text("Following"),
-                          )
-                        ],
-                      ),
+                      )
                     ],
                   ),
                 ),
