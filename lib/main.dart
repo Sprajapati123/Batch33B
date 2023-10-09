@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'dashboard/dashboard_screen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -11,9 +13,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: DemoScreen(),
-    );
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            appBarTheme: const AppBarTheme(
+              iconTheme: IconThemeData(color: Colors.black),
+                color: Colors.white,
+                titleTextStyle: TextStyle(color: Colors.black))),
+        home: DashBoardScreen());
   }
 }
 
@@ -103,14 +109,14 @@ class _DemoScreenState extends State<DemoScreen> {
                   ],
                 ),
               ),
-              Card(
+              const Card(
                 child: ListTile(
                   leading: CircleAvatar(
-                      backgroundImage: AssetImage("assets/images/sale.png"),),
+                    backgroundImage: AssetImage("assets/images/sale.png"),
+                  ),
                   title: Text("Softwarica college of IT & Ecommerce"),
                   subtitle: Text("Hello, sec B"),
                   trailing: Icon(Icons.check_circle),
-
                 ),
               ),
               Container(
