@@ -21,8 +21,11 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         ],
       ),
       body: ListView(
+        // padding: EdgeInsets.only(top: 20),
         children: [
-
+          SizedBox(
+            height: 20,
+          ),
           Row(
             children: [
               Expanded(
@@ -31,13 +34,16 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   child: CircleAvatar(
                     backgroundImage: AssetImage("assets/images/sale.png"),
                   ),
-                  height: 150,
+                  height: 100,
                 ),
+              ),
+              const SizedBox(
+                width: 10,
               ),
               Expanded(
                 flex: 5,
                 child: Container(
-                  height: 150,
+                  height: 100,
                   child: Column(
                     children: [
                       Row(
@@ -46,7 +52,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           Column(
                             children: [
                               Text("31"),
-
                               Padding(
                                 padding: const EdgeInsets.only(top: 5.0),
                                 child: Text("Posts"),
@@ -77,15 +82,24 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                         children: const [
                           Expanded(
                               flex: 3,
-                              child: OutlinedButton(onPressed: null, child: Text("Message"))),
-                          SizedBox(width: 10,),
+                              child: OutlinedButton(
+                                  onPressed: null, child: Text("Message"))),
+                          SizedBox(
+                            width: 10,
+                          ),
                           Expanded(
                               flex: 1,
-                              child: OutlinedButton(onPressed: null, child: Icon(Icons.person_add_alt_outlined))),
-                          SizedBox(width: 10,),
+                              child: OutlinedButton(
+                                  onPressed: null,
+                                  child: Icon(Icons.person_add_alt_outlined))),
+                          SizedBox(
+                            width: 10,
+                          ),
                           Expanded(
                               flex: 1,
-                              child: OutlinedButton(onPressed: null, child: Icon(Icons.arrow_drop_down))),
+                              child: OutlinedButton(
+                                  onPressed: null,
+                                  child: Icon(Icons.arrow_drop_down))),
                         ],
                       )
                     ],
@@ -94,6 +108,55 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               ),
             ],
           ),
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0, top: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: const [
+                    Text("Softwarica college",
+                        style:
+                            TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    SizedBox(width: 10,),
+                    Icon(Icons.verified,color: Colors.blue,),
+                  ],
+                ),
+                Text("Private"),
+                Text("Institution"),
+
+
+                Text("Sofwarica college of IT and Ecommerce"),
+              ],
+            ),
+          ),
+          ///List<int> a = [1,2,3]
+          ///List<int> b = [1,2,3]
+          ///List<int> c = [...a,...b]
+          SizedBox(height: 15,),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                ///if(index == 0){
+                ///true
+                ///}else{
+                ///false
+                ///}
+                /// index == 0 ? true : false;
+                ...List.generate(20, (index) => Padding(
+                  padding:  EdgeInsets.only(
+                      left: index == 0 ? 10 :0,
+                      right: 15.0),
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundImage: AssetImage("assets/images/sale.png"),
+                  ),
+                ),)
+              ],
+            ),
+          )
         ],
       ),
     );
