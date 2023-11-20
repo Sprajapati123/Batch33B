@@ -117,24 +117,30 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 Row(
                   children: const [
                     Text("Softwarica college",
-                        style:
-                            TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                    SizedBox(width: 10,),
-                    Icon(Icons.verified,color: Colors.blue,),
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Icon(
+                      Icons.verified,
+                      color: Colors.blue,
+                    ),
                   ],
                 ),
                 Text("Private"),
                 Text("Institution"),
-
-
                 Text("Sofwarica college of IT and Ecommerce"),
               ],
             ),
           ),
+
           ///List<int> a = [1,2,3]
           ///List<int> b = [1,2,3]
           ///List<int> c = [...a,...b]
-          SizedBox(height: 15,),
+          const SizedBox(
+            height: 15,
+          ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -145,18 +151,21 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 ///false
                 ///}
                 /// index == 0 ? true : false;
-                ...List.generate(20, (index) => Padding(
-                  padding:  EdgeInsets.only(
-                      left: index == 0 ? 10 :0,
-                      right: 15.0),
-                  child: CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage("assets/images/sale.png"),
+                ...List.generate(
+                  20,
+                  (index) => Padding(
+                    padding:
+                        EdgeInsets.only(left: index == 0 ? 10 : 0, right: 15.0),
+                    child: CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage("assets/images/sale.png"),
+                    ),
                   ),
-                ),)
+                )
               ],
             ),
-          )
+          ),
+
         ],
       ),
     );
