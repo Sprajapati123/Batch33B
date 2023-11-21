@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:week_3/dashboard/components/header_text.dart';
 
 class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({super.key});
@@ -23,7 +24,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       body: ListView(
         // padding: EdgeInsets.only(top: 20),
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
@@ -31,10 +32,10 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               Expanded(
                 flex: 2,
                 child: Container(
+                  height: 100,
                   child: CircleAvatar(
                     backgroundImage: AssetImage("assets/images/sale.png"),
                   ),
-                  height: 100,
                 ),
               ),
               const SizedBox(
@@ -49,32 +50,14 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Column(
-                            children: [
-                              Text("31"),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5.0),
-                                child: Text("Posts"),
-                              )
-                            ],
+                          HeaderText(label: "Posts", count: ""),
+                          HeaderText(
+                            label: "Followers",
+                            count: "15.5k",
                           ),
-                          Column(
-                            children: [
-                              Text("15.k"),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5.0),
-                                child: Text("Followers"),
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text("10k"),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text("Following"),
-                              )
-                            ],
+                          HeaderText(
+                            label: "Following",
+                            count: "15.5k",
                           ),
                         ],
                       ),
@@ -166,6 +149,18 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             ),
           ),
 
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.count(
+              crossAxisCount: 3,
+              mainAxisSpacing: 10,
+              physics: const ScrollPhysics(),
+              shrinkWrap: true,
+              crossAxisSpacing: 10,
+              children: List.generate(
+                  50, (index) => Image.asset("assets/images/sale.png")),
+            ),
+          )
         ],
       ),
     );
