@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:week_3/routes/route_generator.dart';
+import 'package:week_3/splash/splash_screen.dart';
 
 import 'dashboard/dashboard_screen.dart';
 
@@ -13,13 +15,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            appBarTheme: const AppBarTheme(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          appBarTheme: const AppBarTheme(
               iconTheme: IconThemeData(color: Colors.black),
-                color: Colors.white,
-                titleTextStyle: TextStyle(color: Colors.black))),
-        home: DashBoardScreen());
+              color: Colors.white,
+              titleTextStyle: TextStyle(color: Colors.black))),
+      initialRoute: SplashScreen.routeName,
+      onGenerateRoute: RouteGenerator.generateRoute,
+    );
   }
 }
 

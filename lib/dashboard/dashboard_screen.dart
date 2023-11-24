@@ -139,7 +139,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   (index) => Padding(
                     padding:
                         EdgeInsets.only(left: index == 0 ? 10 : 0, right: 15.0),
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                       radius: 30,
                       backgroundImage: AssetImage("assets/images/sale.png"),
                     ),
@@ -160,7 +160,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               children: List.generate(
                   50, (index) => Image.asset("assets/images/sale.png")),
             ),
-          )
+          ),
+
         ],
       ),
     );
