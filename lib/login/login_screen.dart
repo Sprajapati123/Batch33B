@@ -23,25 +23,11 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       body: Column(
         children: [
-
           CommonTextField(
             obscureText: false,
-            suffixIcon: Icon(Icons.password),
-            label: Text("email"),
+            suffixIcon: const Icon(Icons.password),
+            label: const Text("email"),
             prefixIcon: Icon(Icons.key),
-
-          ),
-          TextFormField(
-            controller: emailController,
-            decoration: InputDecoration(
-              label: const Text("Email"),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(12)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.green),
-                  borderRadius: BorderRadius.circular(12)),
-            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 15.0),

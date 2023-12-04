@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:week_3/routes/route_generator.dart';
 import 'package:week_3/splash/splash_screen.dart';
 
-import 'dashboard/dashboard_screen.dart';
-
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
