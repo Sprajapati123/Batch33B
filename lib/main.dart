@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:week_3/navigation/navigation_screen.dart';
 import 'package:week_3/routes/route_generator.dart';
 import 'package:week_3/splash/splash_screen.dart';
+import 'package:week_3/tabbar/tabbar_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
               iconTheme: IconThemeData(color: Colors.black),
               color: Colors.white,
               titleTextStyle: TextStyle(color: Colors.black))),
-      initialRoute: SplashScreen.routeName,
+      initialRoute: TabBarScreen.routeName,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

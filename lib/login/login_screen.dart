@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:week_3/registration/registration_screen.dart';
 import 'package:week_3/widgets/common_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -25,9 +26,9 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           CommonTextField(
             obscureText: false,
-            suffixIcon: const Icon(Icons.password),
+            // suffixIcon: const Icon(Icons.password),
             label: const Text("email"),
-            prefixIcon: Icon(Icons.key),
+            prefixIcon: Icon(Icons.mail),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 15.0),
@@ -55,6 +56,23 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
+
+          // OutlinedButton(onPressed: (){}, child: Text("Register now")),
+          Container(
+            width: 500,
+            child: ElevatedButton(onPressed: () {}, child: Text("Login")),
+          ),
+          Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(onPressed: () {
+                Navigator.pushNamed(context, RegistrationScreen.routeName);
+                // Navigator.pushReplacementNamed(context, routeName)
+              }, child: Text("Register now"))),
+          // IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward)),
+          // IconButton
+          //  TextButton
+          // InkWell
+          //GestureDetector
         ],
       ),
     );
