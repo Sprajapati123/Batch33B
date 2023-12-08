@@ -5,7 +5,11 @@ import 'package:week_3/routes/route_generator.dart';
 import 'package:week_3/splash/splash_screen.dart';
 import 'package:week_3/tabbar/tabbar_screen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+     options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
