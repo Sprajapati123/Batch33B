@@ -1,9 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:week_3/navigation/navigation_screen.dart';
 import 'package:week_3/routes/route_generator.dart';
 import 'package:week_3/splash/splash_screen.dart';
 import 'package:week_3/tabbar/tabbar_screen.dart';
+
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
