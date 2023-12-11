@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:week_3/registration/registration_screen.dart';
 import 'package:week_3/widgets/common_text_field.dart';
@@ -14,7 +15,12 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  bool loading = false;
   bool visibility = true;
+
+  // bool _visibility =  true;
+  // bool get visibility =>  _visibility;
+  FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,10 +31,11 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Column(
         children: [
           CommonTextField(
+            controller: emailController,
             obscureText: false,
             // suffixIcon: const Icon(Icons.password),
             label: const Text("email"),
-            prefixIcon: Icon(Icons.mail),
+            prefixIcon: const Icon(Icons.mail),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 15.0),
@@ -62,12 +69,49 @@ class _LoginScreenState extends State<LoginScreen> {
             width: 500,
             child: ElevatedButton(onPressed: () {}, child: Text("Login")),
           ),
+
+          Container(
+            width: 500,
+            child: loading == true
+                ? CircularProgressIndicator()
+                : ElevatedButton(
+                    onPressed: () async {
+                      setState(() {
+                        loading = true;
+                      });
+
+                      try {
+                        final user = await auth.createUserWithEmailAndPassword(
+                            email: emailController.text,
+                            password: passwordController.text);
+
+                        if (user.user != null) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("Registration succesfull")));
+                          setState(() {
+                            loading = false;
+                          });
+                        }
+                      } on Exception catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(e.toString())));
+                        setState(() {
+                          loading = false;
+                        });
+
+                        // TODO
+                      }
+                    },
+                    child: Text("Register")),
+          ),
           Align(
               alignment: Alignment.centerRight,
-              child: TextButton(onPressed: () {
-                Navigator.pushNamed(context, RegistrationScreen.routeName);
-                // Navigator.pushReplacementNamed(context, routeName)
-              }, child: Text("Register now"))),
+              child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, RegistrationScreen.routeName);
+                    // Navigator.pushReplacementNamed(context, routeName)
+                  },
+                  child: Text("Register now"))),
           // IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward)),
           // IconButton
           //  TextButton

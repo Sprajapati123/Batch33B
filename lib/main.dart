@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
               iconTheme: IconThemeData(color: Colors.black),
               color: Colors.white,
               titleTextStyle: TextStyle(color: Colors.black))),
-      initialRoute: TabBarScreen.routeName,
+      initialRoute: SplashScreen.routeName,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
