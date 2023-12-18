@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:week_3/form_screen/form_screen.dart';
 import 'package:week_3/navigation/navigation_screen.dart';
 import 'package:week_3/registration/registration_screen.dart';
 import 'package:week_3/splash/splash_screen.dart';
@@ -22,6 +23,9 @@ class RouteGenerator {
 
       case NavigationScreen.routeName:
         return MaterialPageRoute(builder: (_) => const NavigationScreen());
+
+      case FormScreen.routeName:
+        return MaterialPageRoute(builder: (_) => const FormScreen());
 
       case TabBarScreen.routeName:
         return MaterialPageRoute(builder: (_) => const TabBarScreen());

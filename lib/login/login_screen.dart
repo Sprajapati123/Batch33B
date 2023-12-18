@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         // TODO
                       }
                     },
-                    child: Text("Register")),
+                    child: const Text("Register")),
           ),
           Align(
               alignment: Alignment.centerRight,
@@ -111,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.pushNamed(context, RegistrationScreen.routeName);
                     // Navigator.pushReplacementNamed(context, routeName)
                   },
-                  child: Text("Register now"))),
+                  child: const Text("Register now"))),
           // IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward)),
           // IconButton
           //  TextButton
