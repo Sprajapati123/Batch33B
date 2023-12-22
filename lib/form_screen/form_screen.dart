@@ -27,12 +27,38 @@ class _FormScreenState extends State<FormScreen> {
             StreamBuilder(
               stream: database.ref('users').onValue,
               builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
+                }
+                if (snapshot.data!.snapshot.value == null) {
+                  return Text("no data");
+                }
 
-                Map<dynamic,dynamic> allData = snapshot.data!.snapshot.value as dynamic;
+                Map<dynamic, dynamic> allData =
+                    snapshot.data!.snapshot.value as dynamic;
                 List<dynamic> values = allData.values.toList();
                 List<dynamic> key = allData.keys.toList();
 
-                return Text("data");
+                return Column(
+                  children: [
+                    ...List.generate(
+                        values.length,
+                        (index) => ListTile(
+                              title: Text(values[index]['email']),
+                              trailing: IconButton(
+                                  icon: const Icon(Icons.delete,
+                                      color: Colors.red),
+                                  onPressed: () async {
+                                    await database
+                                        .ref('users')
+                                        .child(key[index])
+                                        .remove();
+                                  }),
+                            ))
+                  ],
+                );
               },
             ),
             Text("First name"),
