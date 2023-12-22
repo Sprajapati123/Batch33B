@@ -24,6 +24,17 @@ class _FormScreenState extends State<FormScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            StreamBuilder(
+              stream: database.ref('users').onValue,
+              builder: (context, snapshot) {
+
+                Map<dynamic,dynamic> allData = snapshot.data!.snapshot.value as dynamic;
+                List<dynamic> values = allData.values.toList();
+                List<dynamic> key = allData.keys.toList();
+
+                return Text("data");
+              },
+            ),
             Text("First name"),
             TextFormField(
               controller: fnameController,
