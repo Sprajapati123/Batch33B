@@ -14,6 +14,7 @@ class _FormScreenState extends State<FormScreen> {
   final TextEditingController lnameController = TextEditingController();
   final TextEditingController contactController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController emaileditController = TextEditingController();
   FirebaseDatabase database = FirebaseDatabase.instance;
   @override
   Widget build(BuildContext context) {
@@ -47,15 +48,63 @@ class _FormScreenState extends State<FormScreen> {
                         values.length,
                         (index) => ListTile(
                               title: Text(values[index]['email']),
-                              trailing: IconButton(
-                                  icon: const Icon(Icons.delete,
-                                      color: Colors.red),
-                                  onPressed: () async {
-                                    await database
-                                        .ref('users')
-                                        .child(key[index])
-                                        .remove();
-                                  }),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                      onPressed: () async {
+                                        emaileditController.text =
+                                            values[index]['email'];
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) => AlertDialog(
+                                            title: Text("Edit data"),
+                                            content: Container(
+                                              height: 400,
+                                              child: Column(
+                                                children: [
+                                                  Text("Email"),
+                                                  TextFormField(
+                                                    controller:
+                                                        emaileditController,
+                                                  ),
+                                                  ElevatedButton(
+                                                      onPressed: () {
+                                                        var datas = {
+                                                          "email":
+                                                              emaileditController
+                                                                  .text
+                                                        };
+
+                                                        database
+                                                            .ref()
+                                                            .child('users')
+                                                            .child(key[index])
+                                                            .update(datas);
+                                                        Navigator.pop(context);
+                                                      },
+                                                      child: Text("Update")),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      icon: Icon(
+                                        Icons.edit,
+                                        color: Colors.green,
+                                      )),
+                                  IconButton(
+                                      icon: const Icon(Icons.delete,
+                                          color: Colors.red),
+                                      onPressed: () async {
+                                        await database
+                                            .ref('users')
+                                            .child(key[index])
+                                            .remove();
+                                      }),
+                                ],
+                              ),
                             ))
                   ],
                 );
