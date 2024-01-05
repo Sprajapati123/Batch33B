@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:week_3/add_products/add_product_screen.dart';
 import 'package:week_3/form_screen/form_screen.dart';
 import 'package:week_3/navigation/navigation_screen.dart';
 import 'package:week_3/registration/registration_screen.dart';
@@ -20,6 +21,9 @@ class RouteGenerator {
 
       case RegistrationScreen.routeName:
         return MaterialPageRoute(builder: (_) => const RegistrationScreen());
+
+      case AddProductScreen.routeName:
+        return MaterialPageRoute(builder: (_) => const AddProductScreen());
 
       case NavigationScreen.routeName:
         return MaterialPageRoute(builder: (_) => const NavigationScreen());

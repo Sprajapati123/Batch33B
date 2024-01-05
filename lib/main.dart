@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:week_3/add_products/add_product_screen.dart';
 import 'package:week_3/form_screen/form_screen.dart';
 import 'package:week_3/navigation/navigation_screen.dart';
 import 'package:week_3/routes/route_generator.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
               iconTheme: IconThemeData(color: Colors.black),
               color: Colors.white,
               titleTextStyle: TextStyle(color: Colors.black))),
-      initialRoute: FormScreen.routeName,
+      initialRoute: AddProductScreen.routeName,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
