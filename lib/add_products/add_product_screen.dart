@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -40,19 +38,31 @@ class _AddProductScreenState extends State<AddProductScreen> {
               onPressed: () {
                 showDialog(
                   context: context,
-                  builder: (context) => const AlertDialog(
+                  builder: (context) => AlertDialog(
                     title: Text("Browse image"),
                     content: SizedBox(
                       height: 100,
                       child: Row(
                         children: [
-                          Icon(
-                            Icons.photo_camera,
-                            size: 40,
+                          InkWell(
+                            onTap: () {
+                              pickImage(ImageSource.camera);
+                              Navigator.of(context).pop();
+                            },
+                            child: Icon(
+                              Icons.photo_camera,
+                              size: 40,
+                            ),
                           ),
-                          Icon(
-                            Icons.photo_outlined,
-                            size: 40,
+                          InkWell(
+                            onTap: () {
+                              pickImage(ImageSource.gallery);
+                              Navigator.of(context).pop();
+                            },
+                            child: Icon(
+                              Icons.photo_outlined,
+                              size: 40,
+                            ),
                           ),
                         ],
                       ),
@@ -60,7 +70,14 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   ),
                 );
               },
-              child: Text("Browse image"))
+              child: Text("Browse image")),
+          image == null
+              ? const SizedBox()
+              : Image.file(
+                  image!,
+                  height: 100,
+                  width: 100,
+                )
         ],
       ),
     );
