@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -13,6 +15,9 @@ class AddProductScreen extends StatefulWidget {
 
 class _AddProductScreenState extends State<AddProductScreen> {
   File? image;
+  String? tempUrl;
+  FirebaseStorage storage = FirebaseStorage.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
   void pickImage(ImageSource source) async {
     var selected =
         await ImagePicker().pickImage(source: source, imageQuality: 100);
@@ -23,9 +28,23 @@ class _AddProductScreenState extends State<AddProductScreen> {
       setState(() {
         image = File(selected.path);
       });
+      saveToStorage();
     }
   }
 
+  saveToStorage() async {
+    var name = image!.path.split('/').last;
+
+    var response = await storage
+        .ref()
+        .child('products')
+        .child(name)
+        .putFile(File(image!.path));
+
+    tempUrl = await response.ref.getDownloadURL();
+  }
+
+  final TextEditingController nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +52,24 @@ class _AddProductScreenState extends State<AddProductScreen> {
         title: const Text("Add Products"),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          StreamBuilder(stream: firestore.collection('products').snapshots(),
+              builder: (context, snapshot) {
+                return Column(
+                  children: snapshot.data!.docs.map((e) => ListTile(
+                    leading: Image.network(e['image']),
+                    title: Text(e['productName'],
+
+                    ),
+                  )).toList(),
+                );
+              },),
+          const Text("Name of product"),
+          TextFormField(
+            controller: nameController,
+          ),
           ElevatedButton(
               onPressed: () {
                 showDialog(
@@ -77,7 +113,14 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   image!,
                   height: 100,
                   width: 100,
-                )
+                ),
+          ElevatedButton(onPressed: () async{
+            var data = {
+              "productName": nameController.text,
+              "image": tempUrl
+            };
+            await firestore.collection('products').doc().set(data);
+          }, child: Text("Submit"))
         ],
       ),
     );
