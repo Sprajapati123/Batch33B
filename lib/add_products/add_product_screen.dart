@@ -12,26 +12,36 @@ class _AddProductScreenState extends State<AddProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Add Products"),),
+      appBar: AppBar(
+        title: const Text("Add Products"),
+      ),
       body: Column(
         children: [
-          ElevatedButton(onPressed: (){
-            showDialog(context: context,
-            builder: (context) => AlertDialog(
-              title: Text("Browse image"),
-              content: Container(
-                height: 100,
-                child: Row(
-                  children: [
-                    Icon(Icons.photo_camera,size: 40,),
-                    Icon(Icons.photo_outlined,size: 40,),
-                  ],
-                ),
-              ),
-            ),
-            );
-
-          }, child: Text("Browse image"))
+          ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => const AlertDialog(
+                    title: Text("Browse image"),
+                    content: SizedBox(
+                      height: 100,
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.photo_camera,
+                            size: 40,
+                          ),
+                          Icon(
+                            Icons.photo_outlined,
+                            size: 40,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+              child: Text("Browse image"))
         ],
       ),
     );
