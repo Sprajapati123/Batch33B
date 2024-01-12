@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddProductScreen extends StatefulWidget {
   const AddProductScreen({super.key});
@@ -9,6 +10,16 @@ class AddProductScreen extends StatefulWidget {
 }
 
 class _AddProductScreenState extends State<AddProductScreen> {
+  void pickImage(ImageSource source) {
+    var selected = ImagePicker().pickImage(source: source, imageQuality: 100);
+    if (selected == null) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("No image selected")));
+    } else {
+
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
