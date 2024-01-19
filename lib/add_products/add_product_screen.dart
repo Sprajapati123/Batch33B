@@ -58,10 +58,15 @@ class _AddProductScreenState extends State<AddProductScreen> {
           StreamBuilder(
             stream: firestore.collection('products').snapshots(),
             builder: (context, snapshot) {
+              if (snapshot.data?.docs == null) {
+                return Text("empty");
+              }
               return Column(
                 children: snapshot.data!.docs
                     .map((e) => ListTile(
-                          leading: Image.network(e['image']),
+                          leading: e['image'] == null
+                              ? SizedBox()
+                              : Image.network(e['image']),
                           title: Text(
                             e['productName'],
                           ),
