@@ -55,17 +55,21 @@ class _AddProductScreenState extends State<AddProductScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          StreamBuilder(stream: firestore.collection('products').snapshots(),
-              builder: (context, snapshot) {
-                return Column(
-                  children: snapshot.data!.docs.map((e) => ListTile(
-                    leading: Image.network(e['image']),
-                    title: Text(e['productName'],
-
-                    ),
-                  )).toList(),
-                );
-              },),
+          StreamBuilder(
+            stream: firestore.collection('products').snapshots(),
+            builder: (context, snapshot) {
+              return Column(
+                children: snapshot.data!.docs
+                    .map((e) => ListTile(
+                          leading: Image.network(e['image']),
+                          title: Text(
+                            e['productName'],
+                          ),
+                        ))
+                    .toList(),
+              );
+            },
+          ),
           const Text("Name of product"),
           TextFormField(
             controller: nameController,
@@ -114,13 +118,15 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   height: 100,
                   width: 100,
                 ),
-          ElevatedButton(onPressed: () async{
-            var data = {
-              "productName": nameController.text,
-              "image": tempUrl
-            };
-            await firestore.collection('products').doc().set(data);
-          }, child: Text("Submit"))
+          ElevatedButton(
+              onPressed: () async {
+                var data = {
+                  "productName": nameController.text,
+                  "image": tempUrl
+                };
+                await firestore.collection('products').doc().set(data);
+              },
+              child: Text("Submit"))
         ],
       ),
     );
